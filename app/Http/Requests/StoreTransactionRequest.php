@@ -20,7 +20,7 @@ class StoreTransactionRequest extends FormRequest
             'value' => ['required', 'numeric', 'min:0.01'],
             'cpf' => ['required', 'string', new CpfValido],
             'status' => ['sometimes', Rule::in(TransactionStatus::values())],
-            // Documento comprovante: pdf ou imagem, até 5MB. Opcional.
+            // Documento comprovante
             'document' => ['nullable', 'file', 'mimes:pdf,jpg,jpeg,png', 'max:5120'],
         ];
     }
