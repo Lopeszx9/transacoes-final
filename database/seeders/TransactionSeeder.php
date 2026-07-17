@@ -9,9 +9,7 @@ use Illuminate\Database\Seeder;
 
 class TransactionSeeder extends Seeder
 {
-    /**
-     * Cria algumas transações de exemplo para já ver a listagem populada.
-     */
+    
     public function run(): void
     {
         $admin = User::where('email', 'admin@empresa.com')->first();
