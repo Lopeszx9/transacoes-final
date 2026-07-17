@@ -10,10 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    /**
-     * Login simples: e-mail + senha.
-     * Retorna token Bearer (Sanctum) para autenticar as próximas requisições.
-     */
+   
     public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
@@ -26,7 +23,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Revoga tokens antigos (opcional, evita acúmulo) e cria um novo.
+        
         $user->tokens()->delete();
         $token = $user->createToken('api-token')->plainTextToken;
 
@@ -38,17 +35,13 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Retorna o usuário autenticado (útil pro front saber quem está logado).
-     */
+   
     public function me()
     {
         return new UserResource(Auth::user());
     }
 
-    /**
-     * Logout: revoga apenas o token atual.
-     */
+    
     public function logout()
     {
         $user = Auth::user();
