@@ -7,10 +7,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class CpfValido implements ValidationRule
 {
-    /**
-     * Valida um CPF (com ou sem máscara) usando o algoritmo oficial
-     * dos dígitos verificadores.
-     */
+   
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $cpf = preg_replace('/\D/', '', (string) $value);
