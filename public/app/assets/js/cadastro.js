@@ -1,8 +1,4 @@
-/**
- * cadastro.js — tela usada tanto para criar quanto para editar uma
- * transação. Se a URL tiver ?id=X, carrega os dados existentes e
- * troca o formulário para modo edição.
- */
+
 
 requireAuth();
 
@@ -84,7 +80,7 @@ form.addEventListener("submit", async (e) => {
 
   let path = "/transactions";
   if (editingId) {
-    // Laravel entende PUT via _method quando o corpo é multipart/form-data.
+    
     formData.append("_method", "PUT");
     path = `/transactions/${editingId}`;
   }
