@@ -1,9 +1,4 @@
-/* ===================================================================
-   Transações — estilos do front-end
-   Paleta: azul-marinho profundo (sidebar/ledger) + índigo de ação +
-   cores de status semânticas. Números em fonte monoespaçada, como um
-   livro-razão, para reforçar que isso é dado financeiro sério.
-   =================================================================== */
+
 
 :root {
   --navy-900: #12172b;
@@ -354,7 +349,7 @@ button {
   background: #fff;
 }
 
-/* ---------- Ledger (lista de transações) ---------- */
+/* ----------  (lista de transações) ---------- */
 
 .ledger {
   background: var(--card);
