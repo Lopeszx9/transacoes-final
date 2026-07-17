@@ -12,10 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
-    /**
-     * Lista de transações (paginada), mais recentes primeiro.
-     * Aceita filtro opcional por status: /api/transactions?status=aprovada
-     */
+    
     public function index(Request $request)
     {
         $query = Transaction::query()
@@ -31,9 +28,7 @@ class TransactionController extends Controller
         return TransactionResource::collection($transactions);
     }
 
-    /**
-     * Cadastra uma nova transação, com upload opcional do documento comprovante.
-     */
+   
     public function store(StoreTransactionRequest $request)
     {
         $data = $request->validated();
@@ -57,18 +52,13 @@ class TransactionController extends Controller
             ->setStatusCode(201);
     }
 
-    /**
-     * Exibe uma transação específica (tela/modal de visualização).
-     */
+   
     public function show(Transaction $transaction)
     {
         return new TransactionResource($transaction->load('user'));
     }
 
-    /**
-     * Atualiza uma transação existente. Se um novo documento for enviado,
-     * o antigo é removido do storage.
-     */
+    
     public function update(UpdateTransactionRequest $request, Transaction $transaction)
     {
         $data = $request->validated();
@@ -100,9 +90,7 @@ class TransactionController extends Controller
         return new TransactionResource($transaction->load('user'));
     }
 
-    /**
-     * Exclusão em soft delete (a transação some da listagem, mas continua no banco).
-     */
+    
     public function destroy(Transaction $transaction)
     {
         $transaction->delete();
