@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Usuários já pré-cadastrados no banco, conforme pedido no desafio,
-     * para testar a tela de login (email + senha).
-     */
+    
     public function run(): void
     {
         User::updateOrCreate(
