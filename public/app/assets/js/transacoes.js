@@ -1,10 +1,4 @@
-/**
- * transacoes.js — lógica da tela de listagem:
- * - busca as transações na API (paginado, com filtro de status)
- * - desenha cada linha com data/hora, valor, cpf e status
- * - menu de "..." com Ver / Editar / Excluir
- * - modal de visualização
- */
+
 
 requireAuth();
 
@@ -83,7 +77,7 @@ function buildRow(tx) {
     </div>
   `;
 
-  // Clicar na linha (fora do menu) abre a visualização.
+  // Clicar na linha abre a visualização.
   row.addEventListener("click", (e) => {
     if (e.target.closest("[data-action]") || e.target.closest(".dropdown")) return;
     openViewModal(tx);
