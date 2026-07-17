@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Transações</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="mark">R$</div>
+      <strong>Transações</strong>
+    </div>
+
+    <a href="transacoes.html" class="nav-item active">📄 Transações</a>
+    <a href="cadastro.html" class="nav-item">➕ Nova transação</a>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="avatar" id="userInitial">?</div>
+        <span id="userName">Carregando...</span>
+      </div>
+      <button class="logout-btn" id="logoutBtn">Sair</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <div>
+        <h1>Transações</h1>
+        <p>Clique em uma transação para ver os detalhes.</p>
+      </div>
+
+      <div class="filters">
+        <select id="statusFilter">
+          <option value="">Todos os status</option>
+          <option value="em_processamento">Em processamento</option>
+          <option value="aprovada">Aprovada</option>
+          <option value="negada">Negada</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="ledger" id="ledger">
+      <div class="ledger-row head">
+        <div>Data/hora</div>
+        <div>Valor</div>
+        <div class="col-cpf-head">CPF</div>
+        <div class="col-status-head">Status</div>
+        <div></div>
+      </div>
+      <!-- linhas inseridas via JS -->
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+  </main>
+
+</div>
+
+<!-- Modal de visualização -->
+<div class="modal-overlay" id="viewModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Detalhes da transação</h2>
+      <button class="modal-close" id="closeModal">&times;</button>
+    </div>
+    <div id="modalBody"><!-- preenchido via JS --></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="modalEditBtn">Editar</button>
+      <button class="btn" id="modalCloseBtn">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/api.js"></script>
+<script src="assets/js/transacoes.js"></script>
+</body>
+</html>

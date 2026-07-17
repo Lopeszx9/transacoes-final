@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Entrar — Transações</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<div class="login-screen">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="mark">R$</div>
+      <strong>Transações</strong>
+    </div>
+
+    <h1>Entrar</h1>
+    <p class="subtitle">Acesse com seu e-mail e senha cadastrados.</p>
+
+    <div class="error-box" id="errorBox"></div>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="voce@empresa.com" required autofocus />
+      </div>
+
+      <div class="field">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required />
+      </div>
+
+      <button type="submit" class="btn block" id="submitBtn">Entrar</button>
+    </form>
+
+    <div class="hint-users">
+      Usuários de teste (seeders):<br />
+      <code>admin@empresa.com</code> / <code>senha123</code><br />
+      <code>operador@empresa.com</code> / <code>senha123</code>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/api.js"></script>
+<script>
+  // Se já tiver sessão ativa, pula direto pra listagem.
+  if (getToken()) {
+    window.location.href = "transacoes.html";
+  }
+
+  const form = document.getElementById("loginForm");
+  const errorBox = document.getElementById("errorBox");
+  const submitBtn = document.getElementById("submitBtn");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorBox.classList.remove("show");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Entrando...";
+
+    try {
+      const response = await apiFetch("/login", {
+        method: "POST",
+        body: {
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value,
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        errorBox.textContent = data.message || "E-mail ou senha inválidos.";
+        errorBox.classList.add("show");
+        return;
+      }
+
+      setSession(data.token, data.user);
+      window.location.href = "transacoes.html";
+    } catch (err) {
+      errorBox.textContent = "Não foi possível conectar à API. Verifique se o servidor Laravel está rodando.";
+      errorBox.classList.add("show");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Entrar";
+    }
+  });
+</script>
+
+</body>
+</html>
