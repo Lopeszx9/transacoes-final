@@ -8,9 +8,7 @@ enum TransactionStatus: string
     case APROVADA = 'aprovada';
     case NEGADA = 'negada';
 
-    /**
-     * Rótulo amigável em português, útil para exibir nas telas.
-     */
+    
     public function label(): string
     {
         return match ($this) {
@@ -20,9 +18,7 @@ enum TransactionStatus: string
         };
     }
 
-    /**
-     * Lista de valores válidos, usada nas regras de validação (in:...).
-     */
+   
     public static function values(): array
     {
         return array_map(fn (self $status) => $status->value, self::cases());
