@@ -11,17 +11,17 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
 
-            // Usuário (local) que criou a transação.
+            
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();
 
             $table->decimal('value', 14, 2);
 
-            // CPF salvo apenas com dígitos (11 chars), formatação fica por conta do front.
+            
             $table->string('cpf', 11);
 
-            // Caminho do arquivo comprovante dentro do disco "public" (nullable = opcional).
+           
             $table->string('document_path')->nullable();
             $table->string('document_original_name')->nullable();
 
